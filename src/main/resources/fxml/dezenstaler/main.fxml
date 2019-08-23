@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Font?>
+<AnchorPane fx:id="rootPane" prefHeight="344.0" prefWidth="670.0" xmlns="http://javafx.com/javafx/8.0.172-ea"
+            xmlns:fx="http://javafx.com/fxml/1" fx:controller="ru.bkmz.installer.controllerD.MainD">
+    <children>
+        <ImageView fx:id="imeg" fitHeight="450.0" fitWidth="800.0" layoutX="83.0" layoutY="77.0" pickOnBounds="true"
+                   preserveRatio="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"
+                   AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <image>
+                <Image url="@../../img/fon.png"/>
+            </image>
+        </ImageView>
+        <Button id="text" fx:id="next" layoutX="680.0" layoutY="404.0" mnemonicParsing="false" onAction="#next"
+                prefHeight="25.0" prefWidth="106.0" text="удалить"/>
+        <Label id="Title" fx:id="TL" layoutX="346.0" layoutY="14.0" text="Удаление" textAlignment="CENTER">
+            <font>
+                <Font size="25.0"/>
+            </font>
+        </Label>
+        <CheckBox fx:id="dDekctop" layoutX="235.0" layoutY="99.0" mnemonicParsing="false" onAction="#OnDDekctop"
+                  text="Удалить ярлык с рабочего стола"/>
+        <CheckBox fx:id="dGame" layoutX="235.0" layoutY="129.0" mnemonicParsing="false" onAction="#onDGame"
+                  text="Удолить фалы игры"/>
+        <CheckBox fx:id="dSave" layoutX="235.0" layoutY="158.0" mnemonicParsing="false" onAction="#onDSave"
+                  text="Удолить сохранения"/>
+        <CheckBox fx:id="deleteAll" layoutX="199.0" layoutY="74.0" mnemonicParsing="false" onAction="#onDeleteAll"
+                  text="Удолить всё"/>
+    </children>
+</AnchorPane>

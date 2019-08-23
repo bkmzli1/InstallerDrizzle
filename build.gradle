@@ -1,0 +1,43 @@
+plugins {
+    id 'java'
+    id 'edu.sc.seis.launch4j' version '2.4.6'
+}
+
+launch4j {
+    mainClassName = 'ru.bkmz.installer.Main'
+    outfile = "Installer drizzle.exe"
+    version = "1.1.1.1"
+    textVersion = "1.1.1.1"
+    icon = "B:\\icon.ico"
+    companyName = "BkzmLitel"
+    copyright = "BkzmLitel"
+    launch4j.language = 'RUSSIAN'
+    internalName = "installer drizzle"
+}
+apply plugin: "edu.sc.seis.launch4j"
+compileJava.options.encoding = "UTF-8"
+group 'installer drizzle'
+version '1.1.1.1'
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+
+dependencies {
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+
+}
+jar {
+    exclude 'META-INF/*.DSA', 'META-INF/*.RSA', 'META-INF/*.SF'
+    from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } }
+    manifest {
+        attributes(
+                'Class-Path': configurations.runtime.files.collect { "lib/$it.name" }.join(' '),
+                'Main-Class': 'ru.bkmz.installer.Main'
+        )
+
+    }
+}
