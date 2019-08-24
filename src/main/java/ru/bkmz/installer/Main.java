@@ -4,10 +4,9 @@ import javafx.application.Application;
 import javafx.stage.Stage;
 import ru.bkmz.installer.util.ImageLoader;
 import ru.bkmz.installer.util.StageStandart;
+import ru.bkmz.installer.util.Web;
 
-import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileReader;
 import java.io.IOException;
 
 public class Main extends Application {
@@ -15,18 +14,23 @@ public class Main extends Application {
     public static final String appdata = System.getenv("APPDATA") + "\\.drizzle\\";
     private static final String[] filesAll = new String[]{""};
     public static Stage stage;
-    String version = "1.1.1.1";
+    private String version = "1.1.1.1";
 
     @Override
-    public void start(Stage primaryStage) {
+    public void start(Stage primaryStage) throws IOException {
+        Web web = new Web();
 
         StageStandart stageStandart = new StageStandart();
-        File file = new File(appdata+"drizzle.inf");
+        File file = new File(appdata + "drizzle.inf");
         if (!file.exists()) {
-            stageStandart.stage("fxml/installer/main.fxml", "css/main.css", false);
+            if (!version.equals(web.pars()) && !web.error) {
+                stageStandart.stage("fxml/updete/up.fxml", "css/main.css", false);
+            } else {
+                stageStandart.stage("fxml/installer/main.fxml", "css/main.css", false);
+            }
+
         } else {
             stageStandart.stage("fxml/dezenstaler/main.fxml", "css/main.css", false);
-
         }
         stage = StageStandart.stage;
     }

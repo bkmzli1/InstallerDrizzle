@@ -48,7 +48,7 @@ public class QuestionOne {
 
     }
 
-    private void notification(String name, String info) {
+    public static void notification(String name, String info) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
 
         alert.setTitle(name);
