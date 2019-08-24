@@ -5,7 +5,7 @@ plugins {
 
 launch4j {
     mainClassName = 'ru.bkmz.installer.Main'
-    outfile = "Installer drizzle.exe"
+    outfile = "Installer drizzle 1.1.1.1V.exe"
     version = "1.1.1.1"
     textVersion = "1.1.1.1"
     icon = "B:\\icon.ico"

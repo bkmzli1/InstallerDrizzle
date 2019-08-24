@@ -28,12 +28,13 @@ public class Update {
 
     public void onUelB(ActionEvent actionEvent) {
         try {
-            Desktop.getDesktop().browse(new URL("https://github.com/bkmzli1/InstallerDrizzle/blob/master/build/launch4j/Installer%20drizzle.exe").toURI());
+            Desktop.getDesktop().browse(new URL("https://github.com/bkmzli1/InstallerDrizzle/blob/master/versions/Installer%20drizzle.exe").toURI());
         } catch (IOException e) {
             e.printStackTrace();
         } catch (URISyntaxException e) {
             e.printStackTrace();
         }
+        System.exit(0);
     }
 
     public void next(ActionEvent actionEvent) {
