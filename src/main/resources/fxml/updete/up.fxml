@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="344.0" prefWidth="670.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ru.bkmz.installer.controller.Update">
+<AnchorPane fx:id="rootPane" prefHeight="344.0" prefWidth="670.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ru.bkmz.installer.controller.Update">
    <children>
        <ImageView fx:id="imeg" fitHeight="450.0" fitWidth="800.0" layoutX="83.0" layoutY="77.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <image>
@@ -14,8 +14,8 @@
          </image>
        </ImageView>
       <Text id="Title" layoutY="19.0" text="!Обнаружено обновление!" textAlignment="CENTER" wrappingWidth="800.0" />
-      <Button id="text" layoutX="14.0" layoutY="411.0" mnemonicParsing="false" text="Открыть ссылку на обновление" />
-      <Button id="text" layoutX="625.0" layoutY="411.0" mnemonicParsing="false" text="Продолжить установку" />
+      <Button id="text" fx:id="urlB" layoutX="14.0" layoutY="411.0" mnemonicParsing="false" onAction="#onUelB" text="Открыть ссылку на обновление" />
+      <Button id="text" fx:id="next" layoutX="625.0" layoutY="411.0" mnemonicParsing="false" onAction="#next" text="Продолжить установку" />
 
    </children>
 </AnchorPane>
