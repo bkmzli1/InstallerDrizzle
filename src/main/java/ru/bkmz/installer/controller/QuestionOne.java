@@ -1,10 +1,7 @@
 package ru.bkmz.installer.controller;
 
 import javafx.event.ActionEvent;
-import javafx.scene.control.Button;
-import javafx.scene.control.CheckBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.DirectoryChooser;
@@ -33,16 +30,30 @@ public class QuestionOne {
     }
 
     public void next(ActionEvent actionEvent) {
-        urls = url.getText();
-        installer = new Installer(desctop.isSelected(), pysk.isSelected());
-        new PaneNext(rootPane, "fxml/installer/installer.fxml");
+        File file = new File(url.getText());
+        if (file.exists()) {
+            urls = url.getText() + "\\drizzle";
+            installer = new Installer(desctop.isSelected(), pysk.isSelected());
+            new PaneNext(rootPane, "fxml/installer/installer.fxml");
+        } else {
+            notification("Ошибка", "Дериктория " + file + " ненайдена");
+        }
     }
 
     public void onFailList(ActionEvent actionEvent) {
         DirectoryChooser directoryChooser = new DirectoryChooser();
         File file = directoryChooser.showDialog(Main.stage);
-        url.setText(file + "\\drizzle");
+        url.setText(file + "");
 
 
+    }
+
+    private void notification(String name, String info) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+
+        alert.setTitle(name);
+        alert.setHeaderText(null);
+        alert.setContentText(info);
+        alert.showAndWait();
     }
 }

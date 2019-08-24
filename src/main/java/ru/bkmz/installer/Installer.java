@@ -118,7 +118,13 @@ public class Installer {
             s += "В процессе установки была ошибка!\n" +
                     "При запуске игра попытается автоматически устранить проблемы если проблемы небыли устронены то отправте писмо на почту bkmzlitel@gmail.com";
             text.setText(s);
+        }else {
+            s += "Процессе установки завершён";
+            text.setText(s);
         }
+        FileWriter fileWriter = new FileWriter(Main.appdata +"drizzle.inf");
+        fileWriter.write(urls);
+        fileWriter.close();
 
     }
 

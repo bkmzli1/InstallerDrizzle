@@ -15,6 +15,7 @@ public class Main extends Application {
     public static final String appdata = System.getenv("APPDATA") + "\\.drizzle\\";
     private static final String[] filesAll = new String[]{""};
     public static Stage stage;
+    String version = "1.1.1.1";
 
     @Override
     public void start(Stage primaryStage) {

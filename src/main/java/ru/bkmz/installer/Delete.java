@@ -67,12 +67,12 @@ public class Delete {
     private static void deleteGS(Text procent, ProgressBar progress, TextArea text) {
         try {
             Files.delete(Paths.get(appdata));
-            s += "удалено " + appdata + "\n";
-            text.setText(s.replace("java.nio.file.NoSuchFileException", "не найден"));
+            s += "удалено: " + appdata + "\n";
+            text.setText(s.replace("java.nio.file.NoSuchFileException", "не найден "));
             scet(procent, progress, text);
         } catch (Exception e) {
             s += e + "\n";
-            text.setText(s.replace("java.nio.file.NoSuchFileException", "не найден"));
+            text.setText(s.replace("java.nio.file.NoSuchFileException", "не найден "));
             scet(procent, progress, text);
         }
     }
@@ -80,21 +80,21 @@ public class Delete {
     private static void deleteD(Text procent, ProgressBar progress, TextArea text) {
         try {
             Files.delete(Paths.get(getCurrentUserDesktopPath().replace("à ¡®ç¨© áâ®®«", "рабочий стоол") + "\\drizzle.lnk"));
-            s += "удалено " + appdata + "\\drizzle.inf" + "\n";
-            text.setText(s.replace("java.nio.file.NoSuchFileException", "не найден"));
+            s += "удалено: " + appdata + "\\drizzle.inf" + "\n";
+            text.setText(s.replace("java.nio.file.NoSuchFileException", "не найден "));
             scet(procent, progress, text);
         } catch (Exception e) {
             s += e + "\n";
-            text.setText(s.replace("java.nio.file.NoSuchFileException", "не найден"));
+            text.setText(s.replace("java.nio.file.NoSuchFileException", "не найден "));
         }
         try {
             Files.delete(Paths.get("C:\\ProgramData\\Microsoft\\Windows\\Start Menu\\Programs\\drizzle.lnk"));
-            s += "удалено " + appdata + "drizzle.inf" + "\n";
+            s += "удалено: " + appdata + "drizzle.inf" + "\n";
             scet(procent, progress, text);
-            text.setText(s.replace("java.nio.file.NoSuchFileException", "не найден"));
+            text.setText(s.replace("java.nio.file.NoSuchFileException", "не найден "));
         } catch (Exception e) {
             s += e + "\n";
-            text.setText(s.replace("java.nio.file.NoSuchFileException", "не найден"));
+            text.setText(s.replace("java.nio.file.NoSuchFileException", "не найден "));
         }
     }
 
@@ -106,7 +106,7 @@ public class Delete {
 
         } catch (Exception e) {
             s += e + "\n";
-            text.setText(s.replace("java.nio.file.NoSuchFileException", "не найден"));
+            text.setText(s.replace("java.nio.file.NoSuchFileException", "Файл сохранения не найден "));
         }
         try {
             scet(procent, progress, text);
@@ -114,7 +114,7 @@ public class Delete {
 
         } catch (Exception e) {
             s += e + "\n";
-            text.setText(s.replace("java.nio.file.NoSuchFileException", "не найден"));
+            text.setText(s.replace("java.nio.file.NoSuchFileException", "Файл сохранения не найден "));
         }
     }
 
@@ -124,40 +124,42 @@ public class Delete {
             url = readUsingBufferedReader(appdata + "drizzle.inf");
         } catch (Exception e) {
             s += e + "\n";
-            text.setText(s.replace("java.nio.file.NoSuchFileException", "не найден"));
+            text.setText(s.replace("java.nio.file.NoSuchFileException", "не найден "));
             e.printStackTrace();
         }
         try {
             Files.delete(Paths.get(url + "\\drizzle.exe"));
+            s += "удалено: " + url + "\\drizzle.exe" + "\n";
+            text.setText(s.replace("java.nio.file.NoSuchFileException", "не найден "));
             scet(procent, progress, text);
         } catch (Exception e) {
             s += e + "\n";
-            text.setText(s.replace("java.nio.file.NoSuchFileException", "не найден"));
+            text.setText(s.replace("java.nio.file.NoSuchFileException", "не найден "));
         }
         try {
             Files.delete(Paths.get(url));
             scet(procent, progress, text);
         } catch (Exception e) {
             s += e + "\n";
-            text.setText(s.replace("java.nio.file.NoSuchFileException", "не найден"));
+            text.setText(s.replace("java.nio.file.NoSuchFileException", "не найден "));
         }
         for (String file :
                 files) {
             try {
                 Files.delete(Paths.get(appdata + "res\\" + file));
                 scet(procent, progress, text);
-                s += "удалено " + appdata + "res\\" + file + "\n";
-                text.setText(s.replace("java.nio.file.NoSuchFileException", "не найден"));
+                s += "удалено: " + appdata + "res\\" + file + "\n";
+                text.setText(s.replace("java.nio.file.NoSuchFileException", "не найден "));
             } catch (Exception e) {
                 s += e + "\n";
-                text.setText(s.replace("java.nio.file.NoSuchFileException", "не найден"));
+                text.setText(s.replace("java.nio.file.NoSuchFileException", "не найден "));
             }
         }
         try {
             Files.delete(Paths.get(appdata + "drizzle.inf"));
             scet(procent, progress, text);
-            s += "удалено " + appdata + "drizzle.inf" + "\n";
-            text.setText(s.replace("java.nio.file.NoSuchFileException", "не найден"));
+            s += "удалено: " + appdata + "drizzle.inf" + "\n";
+            text.setText(s.replace("java.nio.file.NoSuchFileException", "не найден "));
         } catch (Exception e) {
             e.printStackTrace();
         }
