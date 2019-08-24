@@ -15,6 +15,7 @@ public class Main extends Application {
     private static final String[] filesAll = new String[]{""};
     public static Stage stage;
     public static String version = "1.1.1.3";
+    public static String versionD = "v3.10.3";
     public static Web web = new Web();
     public static String newVersion = web.parsV();
    public static  String newLA =  web.licenseAgreement();

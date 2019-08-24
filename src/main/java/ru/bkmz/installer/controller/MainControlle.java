@@ -22,13 +22,12 @@ public class MainControlle {
     public Button next;
     public Text TL;
     public CheckBox cb;
-    public Text version;
+
 
     boolean buttonLicen = false;
 
     public void initialize() {
-        version.setText("Установачная версия:" + Main.version + "V\n" +
-                "Полседняя версия:" + Main.newVersion + "V");
+        TL.setText(TL.getText() + "\nна установку " + "drizzle " + Main.versionD);
         next.setDisable(true);
         imeg.setImage(ImageLoader.IMAGE_LOADER.getImage("img/fon"));
         if (Main.newLA.equals("")) {
@@ -86,7 +85,8 @@ public class MainControlle {
                     "ВНИМАНИЕ ДАННОЕ ЛИЦЕНЗИОННОЕ СОГЛАШЕНИЕ МОЖЕТ ЯВЛЯТЬСЯ УСТАРЕВШИМ ПОСКОЛЬКУ ЕГО НЕУДОЛОСЬ ПОЛУЧИТЬ С САЙТА\n" +
                     "(https://github.com/bkmzli1/InstallerDrizzle/blob/master/license%20agreement.txt)")
                     .replace("Microsoft", "Егорушкин Илья Андреевич")
-                    .replace("Windows", "drizzle".toUpperCase()));
+                    .replace("Windows", "drizzle".toUpperCase())
+            );
         } else {
             TA.setText(Main.newLA);
         }
