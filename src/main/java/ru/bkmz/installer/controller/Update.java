@@ -22,8 +22,8 @@ public class Update {
     public Text newV;
 
     public void initialize() {
-        oldV.setText(Main.version);
-        newV.setText(Main.newVersion);
+        oldV.setText(Main.version + "V");
+        newV.setText(Main.newVersion + "V");
     }
 
     public void onUelB(ActionEvent actionEvent) {

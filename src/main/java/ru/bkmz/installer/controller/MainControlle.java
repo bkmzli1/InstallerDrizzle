@@ -5,7 +5,6 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
-import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
@@ -28,7 +27,8 @@ public class MainControlle {
     boolean buttonLicen = false;
 
     public void initialize() {
-        version.setText(Main.version+"V");
+        version.setText("Установачная версия:" + Main.version + "V\n" +
+                "Полседняя версия:" + Main.newVersion+"V");
         next.setDisable(true);
         imeg.setImage(ImageLoader.IMAGE_LOADER.getImage("img/fon"));
         TA.setText(("УСЛОВИЯ ЛИЦЕНЗИОННОГО СОГЛАШЕНИЯ НА ИСПОЛЬЗОВАНИЕ ПРОГРАММНОГО ОБЕСПЕЧЕНИЯ drizzle\n".toUpperCase() +

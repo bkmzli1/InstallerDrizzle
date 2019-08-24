@@ -26,6 +26,6 @@
             <Font size="25.0" />
          </font></Text>
       <CheckBox id="text" fx:id="cb" cache="true" layoutX="83.0" layoutY="408.0" onAction="#onCb" text="Принимаю условия пользовательского соглашения" />
-      <Text fx:id="version" layoutY="63.0" textAlignment="CENTER" wrappingWidth="800.0" />
+      <Text id="text" fx:id="version" layoutY="46.0" textAlignment="CENTER" wrappingWidth="800.0" />
     </children>
 </AnchorPane>
