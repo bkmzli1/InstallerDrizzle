@@ -14,13 +14,13 @@ public class Main extends Application {
     public static final String appdata = System.getenv("APPDATA") + "\\.drizzle\\";
     private static final String[] filesAll = new String[]{""};
     public static Stage stage;
-    public static String version = "1.1.1.1";
-    private static Web web = new Web();
-    public static String newVersion = web.pars();
+    public static String version = "1.1.1.3";
+    public static Web web = new Web();
+    public static String newVersion = web.parsV();
+   public static  String newLA =  web.licenseAgreement();
 
     @Override
     public void start(Stage primaryStage) throws IOException {
-
 
         StageStandart stageStandart = new StageStandart();
         File file = new File(appdata + "drizzle.inf");
