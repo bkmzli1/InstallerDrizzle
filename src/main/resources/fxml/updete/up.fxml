@@ -16,6 +16,8 @@
       <Text id="Title" layoutY="19.0" text="!Обнаружено обновление!" textAlignment="CENTER" wrappingWidth="800.0" />
       <Button id="text" fx:id="urlB" layoutX="14.0" layoutY="411.0" mnemonicParsing="false" onAction="#onUelB" text="Открыть ссылку на обновление" />
       <Button id="text" fx:id="next" layoutX="625.0" layoutY="411.0" mnemonicParsing="false" onAction="#next" text="Продолжить установку" />
+      <Text id="text" fx:id="oldV" layoutX="625.0" layoutY="396.0" textAlignment="CENTER" wrappingWidth="173.0000057220459" />
+      <Text id="text" fx:id="newV" layoutX="14.0" layoutY="395.0" textAlignment="CENTER" wrappingWidth="225.99998474121094" />
 
    </children>
 </AnchorPane>

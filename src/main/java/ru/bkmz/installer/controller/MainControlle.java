@@ -9,6 +9,8 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.text.Text;
+import ru.bkmz.installer.Main;
 import ru.bkmz.installer.util.ImageLoader;
 import ru.bkmz.installer.util.PaneNext;
 
@@ -19,12 +21,14 @@ public class MainControlle {
     public AnchorPane rootPane;
     public TextArea TA;
     public Button next;
-    public Label TL;
+    public Text TL;
     public CheckBox cb;
+    public Text version;
 
     boolean buttonLicen = false;
 
     public void initialize() {
+        version.setText(Main.version+"V");
         next.setDisable(true);
         imeg.setImage(ImageLoader.IMAGE_LOADER.getImage("img/fon"));
         TA.setText(("УСЛОВИЯ ЛИЦЕНЗИОННОГО СОГЛАШЕНИЯ НА ИСПОЛЬЗОВАНИЕ ПРОГРАММНОГО ОБЕСПЕЧЕНИЯ drizzle\n".toUpperCase() +

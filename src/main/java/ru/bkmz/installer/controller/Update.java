@@ -4,6 +4,8 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.text.Text;
+import ru.bkmz.installer.Main;
 import ru.bkmz.installer.util.PaneNext;
 
 import java.awt.*;
@@ -16,6 +18,13 @@ public class Update {
     public Button urlB;
     public Button next;
     public AnchorPane rootPane;
+    public Text oldV;
+    public Text newV;
+
+    public void initialize() {
+        oldV.setText(Main.version);
+        newV.setText(Main.newVersion);
+    }
 
     public void onUelB(ActionEvent actionEvent) {
         try {
