@@ -31,7 +31,7 @@ public class FinihD  {
     public void next(ActionEvent actionEvent) {
         if (cb.isSelected()) {
             try {
-                Desktop.getDesktop().browse(new URL("https://github.com/bkmzli1/drizzle/tree/V3.10.x/build/libs").toURI());
+                Desktop.getDesktop().browse(new URL("https://github.com/bkmzli1/InstallerDrizzle/tree/master/versions").toURI());
             } catch (Exception e) {
                 e.printStackTrace();
             }
