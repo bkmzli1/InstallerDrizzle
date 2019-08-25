@@ -135,7 +135,7 @@ public class Installer {
 
     }
 
-    void label() {
+    void label()throws Exception {
         try {
             Thread.sleep(1000);
         } catch (InterruptedException e) {
@@ -171,7 +171,7 @@ public class Installer {
         }
     }
 
-    void addText(String text) {
+    void addText(String text)throws Exception {
 
         s += text + "\n";
         this.text.setText(s);
@@ -203,11 +203,11 @@ public class Installer {
     }
 }
 
-class StreamReader extends Thread {
+class StreamReader  extends Thread {
     private InputStream is;
     private StringWriter sw;
 
-    StreamReader(InputStream is) {
+    StreamReader(InputStream is)throws Exception {
         this.is = is;
         sw = new StringWriter();
     }
@@ -222,7 +222,7 @@ class StreamReader extends Thread {
         }
     }
 
-    String getResult() {
+    String getResult()throws Exception {
         return sw.toString();
     }
 }

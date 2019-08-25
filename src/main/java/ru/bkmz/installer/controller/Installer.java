@@ -39,6 +39,7 @@ public class Installer {
                 String s = text.getText();
                 s += "\n" + e.getLocalizedMessage() + "\n";
                 text.setText(s);
+                next.setDisable(false);
             }
             next.setDisable(false);
         }

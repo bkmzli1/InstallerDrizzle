@@ -83,16 +83,16 @@ public class DeleteRun {
         }
         Thread t = new Thread(() -> {
             if (bDSave && bDGame) {
-                delete(appdata);
+                try {
+                    delete(appdata);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
             }
         }
         );
         t.start();
         t.join();
-
-        addText(up + "");
-
-
     }
 
     void addText(String text) {
@@ -125,7 +125,7 @@ public class DeleteRun {
         return ls;
     }
 
-    void delete(String url) {
+    void delete(String url)throws Exception  {
         Thread t = new Thread(() -> {
             try {
                 Files.delete(Paths.get(url));
