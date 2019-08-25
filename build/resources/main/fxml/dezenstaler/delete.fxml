@@ -14,7 +14,7 @@
     <children>
         <ImageView fx:id="imeg" fitHeight="450.0" fitWidth="800.0" layoutX="83.0" layoutY="77.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
             <image>
-                <Image url="@../../img/fon.png" />
+                <Image url="@../../img/fon_d.png" />
             </image>
         </ImageView>
         <Button id="text" fx:id="next" layoutX="680.0" layoutY="404.0" mnemonicParsing="false" onAction="#next" prefHeight="25.0" prefWidth="106.0" text="Завершить" />

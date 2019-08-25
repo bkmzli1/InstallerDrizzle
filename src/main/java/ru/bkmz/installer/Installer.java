@@ -4,160 +4,155 @@ package ru.bkmz.installer;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.control.TextArea;
 import javafx.scene.text.Text;
-import ru.bkmz.installer.controller.QuestionOne;
 import ru.bkmz.installer.util.CopyFiles;
 
-import java.io.*;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.InputStream;
+import java.io.StringWriter;
 import java.util.ArrayList;
 
-import static ru.bkmz.installer.ShortcutBuilder.sBuilder;
-import static ru.bkmz.installer.controller.QuestionOne.urls;
+import static ru.bkmz.installer.util.ShortcutBuilder.sBuilder;
 
 public class Installer {
     boolean desctop = false;
     boolean pysk = false;
-    static boolean error = false;
-    float setap = 8;
+    String s = "";
+    TextArea text;
+    float setap;
     float up = 0;
+    String urlInnstaller;
+    static boolean isError = false;
     public static ArrayList<File> fileListD = new ArrayList<File>();
+    protected final String[] game = {"exe/drizzle.exe", "media/Acid.mp3", "media/Acid.wav", "media/electric.wav",
+            "media/Hard_kick_drum.wav", "media/Shield.wav", "media/sine.mp3", "media/star.wav", "DD/language"
+    };
+    private Text procent;
+    private ProgressBar progress;
 
-    public Installer(boolean desctop, boolean pysk) {
+    public Installer(boolean desctop, boolean pysk, String urls) {
         this.desctop = desctop;
         this.pysk = pysk;
-
+        this.urlInnstaller = urls;
+        setap = 28;
+        if (desctop) {
+            setap++;
+        }
+        if (pysk) {
+            setap++;
+        }
     }
 
-    void scet(Text procent, ProgressBar progress, TextArea text) {
-
-        float procents =  up/setap;
-        procent.setText(procents*100+"%");
+    void scet() {
+        up++;
+        float procents = up / setap;
+        procent.setText(procents * 100 + "%");
         progress.setProgress(procents);
         System.out.println(procents);
-        up++;
+
 
     }
 
-    public void run(Text procent, ProgressBar progress, TextArea text) throws Exception {
+    public void run(Text procent, ProgressBar progress, TextArea text) {
 
-        if (desctop) {
-            setap++;
-        }
-        if (pysk) {
-            setap++;
-        }
-        scet(procent, progress, text);
-        String s = "Установка запущена...\n";
-        text.setText(s);
-        s += "Начета извлечение музыки\n";
-
-        text.setText(s);
-        try {
-            setapOne(procent, progress, text);
-            s += "Извлечение музыки завершино\n";
-            text.setText(s);
-            s += "Начета извлечение БД\n";
-            text.setText(s);
-
-
-        } catch (Exception e) {
-            error = true;
-            s += e.toString() + "\n";
-            text.setText(s);
-        }
-        try {
-            setapTwo(procent, progress, text);
-            s += "Извлечение БД завершино\n";
-            text.setText(s);
-
-        } catch (Exception e) {
-            error = true;
-            s += e.toString() + "\n";
-            text.setText(s);
-        }
-        s += "Начета извлечение exe\n";
-        text.setText(s);
-
-        try {
-            setapThrre(procent, progress, text);
-            s += "Извлечение exe завершино\n";
-            text.setText(s);
-        } catch (Exception e) {
-            error = true;
-            s += e.toString() + "\n";
-            text.setText(s);
-        }
-        if (desctop) {
             try {
-                s += "Начето создание ярлыка на рабочий стол\n";
-                text.setText(s);
-                sBuilder(urls + "\\drizzle.exe", getCurrentUserDesktopPath().replace("à ¡®ç¨© áâ®®«", "рабочий стоол"), "desktop");
-                s += "закончино создание ярлыка на рабочий стол\n";
-                text.setText(s);
-                scet(procent, progress, text);
-
+                this.text = text;
+                this.procent = procent;
+                this.progress = progress;
+                scet();
+                FileWriter fileWriter = new FileWriter(Main.appdata + "drizzle.inf");
+                fileWriter.write(urlInnstaller);
+                fileWriter.close();
             } catch (Exception e) {
-                error = true;
-                s += e.toString() + "\n";
-                text.setText(s);
-            }
-        }
-        if (pysk) {
-            try {
-                s += "Начето создание ярлыка в пуск\n";
-                text.setText(s);
-                sBuilder(urls + "\\drizzle.exe", "C:\\ProgramData\\Microsoft\\Windows\\Start Menu\\Programs", "pysk");
-                s += "закончино создание ярлыка в пуск\n";
-                text.setText(s);
-                scet(procent, progress, text);
-            } catch (Exception e) {
+                isError = true;
                 e.printStackTrace();
             }
+            try {
+                try {
+                    Thread.sleep(100);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
 
+                addText("Начита подготовка к установке");
+                ArrayList<String[]> files = new ArrayList<String[]>();
+                for (String f :
+                        game) {
+                    files.add(f.split("/"));
+                }
+                ArrayList<String> file = new ArrayList<String>();
+                for (String[] sm :
+                        files) {
+                    for (String name :
+                            sm) {
+                        scet();
+                        file.add(name);
+                    }
+                }
+
+                addText("Подготовка завершина");
+
+                addText("Начето извлечение файлов");
+                for (int i = 0; i < file.size() - 1; i = i + 2) {
+                    try {
+                        scet();
+                        CopyFiles.failCopi(file.get(i) + "/", file.get(i + 1));
+                        addText(file.get(i) + "/" + file.get(i + 1));
+                        if (file.get(i + 1).equals("drizzle.exe")) {
+
+                            label();
+
+                        }
+                    } catch (Exception e) {
+                        isError = true;
+                        addText("ошибка извлечения:" + e);
+                    }
+                }
+
+
+                if (!isError) {
+                    addText("Установка завершина!");
+                } else {
+                    addText("В процессе установки произошла ошибка");
+                    addText("При запуске игры будут запущены протоколы их исправления");
+                    addText("Если протоколы испровление ошибак несмогут их истранить обротитесь по электронной почте blmzlitel@gmail.com");
+                }
+            } catch (Exception e) {
+                addText(String.valueOf(e));
+            }
+
+    }
+
+    void label() {
+        if (desctop) {
+            try {
+
+                addText("Начето создание ярлыка на рабочий стол");
+                sBuilder(urlInnstaller + "\\drizzle.exe", getCurrentUserDesktopPath().replace("à ¡®ç¨© áâ®®«", "рабочий стоол"), "desktop");
+                addText("Закончино создание ярлыка на рабочий стол");
+                scet();
+            } catch (Exception e) {
+                isError = true;
+                addText("ошибка создания ярлыка:" + e);
+            }
         }
-        if (error) {
-            s += "В процессе установки была ошибка!\n" +
-                    "При запуске игра попытается автоматически устранить проблемы если проблемы небыли устронены то отправте писмо на почту bkmzlitel@gmail.com";
-            text.setText(s);
-        }else {
-            s += "Процессе установки завершён";
-            text.setText(s);
+        if (pysk) {
+            try {
+                addText("Начето создание ярлыка в пуск");
+                sBuilder(urlInnstaller + "\\drizzle.exe", "C:\\ProgramData\\Microsoft\\Windows\\Start Menu\\Programs", "pysk");
+                addText("Закончино создание ярлыка в пуск");
+                scet();
+            } catch (Exception e) {
+                isError = true;
+                addText("ошибка создания ярлыка:" + e);
+            }
         }
-        FileWriter fileWriter = new FileWriter(Main.appdata +"drizzle.inf");
-        fileWriter.write(urls);
-        fileWriter.close();
-
     }
 
-    private void setapOne(Text procent, ProgressBar progress, TextArea text) throws Exception {
-        CopyFiles.failCopi("media/", "sine.mp3");
-        scet(procent, progress, text);
+    void addText(String text) {
 
-        CopyFiles.failCopi("media/", "Acid.wav");
-        scet(procent, progress, text);
-
-        CopyFiles.failCopi("media/", "electric.wav");
-        scet(procent, progress, text);
-
-        CopyFiles.failCopi("media/", "Shield.wav");
-        scet(procent, progress, text);
-
-        CopyFiles.failCopi("media/", "star.wav");
-        scet(procent, progress, text);
-
-        CopyFiles.failCopi("media/", "Hard_kick_drum.wav");
-        scet(procent, progress, text);
-
-    }
-
-    private void setapTwo(Text procent, ProgressBar progress, TextArea text) throws Exception {
-        CopyFiles.failCopi("DD/", "language");
-        scet(procent, progress, text);
-
-    }
-
-    private void setapThrre(Text procent, ProgressBar progress, TextArea text) throws Exception {
-        CopyFiles.failCopi("exe/", "drizzle.exe");
-        scet(procent, progress, text);
+        s += text + "\n";
+        this.text.setText(s);
     }
 
     private static final String REGQUERY_UTIL = "reg query ";
@@ -180,7 +175,7 @@ public class Installer {
             if (p == -1) return null;
             return result.substring(p + REGSTR_TOKEN.length()).trim();
         } catch (Exception e) {
-            error = true;
+            isError = true;
             return null;
         }
     }
@@ -200,7 +195,8 @@ class StreamReader extends Thread {
             int c;
             while ((c = is.read()) != -1)
                 sw.write(c);
-        } catch (IOException e) {
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 

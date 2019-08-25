@@ -35,11 +35,11 @@ public class StageStandart extends Stage {
         stage.setScene(scene);
         stage.setOnCloseRequest(new EventHandler<WindowEvent>() {
             public void handle(WindowEvent we) {
-                System.exit(-1);
+                System.exit(0);
             }
         });
         stage.getIcons().add(ImageLoader.IMAGE_LOADER.getImage("img/icon/icon"));
-        stage.setResizable(false);
+       stage.setResizable(false);
         stage.show();
     }
 

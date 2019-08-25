@@ -6,6 +6,7 @@ import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import ru.bkmz.installer.util.ImageLoader;
 
 import java.awt.*;
 import java.io.File;
@@ -22,6 +23,7 @@ public class FinihD  {
     public CheckBox cb;
 
     public void initialize() {
+        //imeg.setImage(ImageLoader.IMAGE_LOADER.getImage("img/fon_d_complited"));
         cb.setText("Просмотреть другие версии и\n" +
                 "Проэты");
     }
@@ -34,9 +36,7 @@ public class FinihD  {
                 e.printStackTrace();
             }
         }
-        for (File f : fileListD) {
-            f.delete();
-        }
+
         System.exit(0);
     }
 }

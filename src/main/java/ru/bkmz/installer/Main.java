@@ -9,23 +9,28 @@ import ru.bkmz.installer.util.Web;
 import java.io.File;
 import java.io.IOException;
 
+
+
 public class Main extends Application {
     public static final String nameStage = "Installer drizzle".toUpperCase();
     public static final String appdata = System.getenv("APPDATA") + "\\.drizzle\\";
     private static final String[] filesAll = new String[]{""};
     public static Stage stage;
-    public static String version = "1.1.1.3";
+    public static String version = "1.1.1.4";
     public static String versionD = "v3.10.3";
     public static Web web = new Web();
-    public static String newVersion = web.parsV();
-   public static  String newLA =  web.licenseAgreement();
+    public static String newVersion;
+    public static String newLA;
 
     @Override
-    public void start(Stage primaryStage) throws IOException {
+    public void start(Stage primaryStage) throws Exception {
+
 
         StageStandart stageStandart = new StageStandart();
         File file = new File(appdata + "drizzle.inf");
         if (!file.exists()) {
+            newVersion = web.parsV();
+            newLA = web.licenseAgreement();
             if (!version.equals(newVersion) && !web.error) {
                 stageStandart.stage("fxml/updete/up.fxml", "css/main.css", false);
             } else {

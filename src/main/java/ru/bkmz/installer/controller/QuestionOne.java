@@ -33,7 +33,7 @@ public class QuestionOne {
         File file = new File(url.getText());
         if (file.exists()) {
             urls = url.getText() + "\\drizzle";
-            installer = new Installer(desctop.isSelected(), pysk.isSelected());
+            installer = new Installer(desctop.isSelected(), pysk.isSelected(),urls);
             new PaneNext(rootPane, "fxml/installer/installer.fxml");
         } else {
             notification("Ошибка", "Дериктория " + file + " ненайдена");

@@ -24,17 +24,22 @@ public class Installer {
     boolean error = false;
 
 
-    public Thread thread = new Thread(() -> {
-        procent.setText("0%");
-        try {
-            installer.run(procent, progress, text);
-        } catch (Exception e) {
-            String s = text.getText();
-            s += "\n" + e.getLocalizedMessage() + "\n";
-            text.setText(s);
+    public Thread thread = new Thread(new Runnable() {
+        @Override
+        public void run() {
+            procent.setText("0%");
+            try {
+                installer.run(procent, progress, text);
+            } catch (Exception e) {
+                String s = text.getText();
+                s += "\n" + e.getLocalizedMessage() + "\n";
+                text.setText(s);
+            }
+            next.setDisable(false);
         }
-        next.setDisable(false);
-    });
+    }
+
+    );
 
 
     public void initialize() {
@@ -43,7 +48,7 @@ public class Installer {
         try {
             thread.start();
         } catch (Exception e) {
-            thread.stop();
+            e.printStackTrace();
             error = true;
             next.setDisable(false);
         }

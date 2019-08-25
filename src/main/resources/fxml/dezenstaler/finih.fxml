@@ -5,26 +5,26 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.*?>
 <?import javafx.scene.text.Font?>
-
-<AnchorPane fx:id="rootPane" prefHeight="344.0" prefWidth="670.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ru.bkmz.installer.controllerD.FinihD">
+<AnchorPane fx:id="rootPane" prefHeight="344.0" prefWidth="670.0" xmlns="http://javafx.com/javafx/8.0.172-ea"
+            xmlns:fx="http://javafx.com/fxml/1" fx:controller="ru.bkmz.installer.controllerD.FinihD">
     <children>
-        <ImageView fx:id="imeg" fitHeight="450.0" fitWidth="800.0" layoutX="83.0" layoutY="77.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <ImageView fx:id="imeg" fitHeight="450.0" fitWidth="800.0" layoutX="83.0" layoutY="77.0" pickOnBounds="true"
+                   preserveRatio="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"
+                   AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
             <image>
-                <Image url="@../../img/fon_d_complited.png" />
+                <Image url="@../../img/fon_d_complited.png"/>
             </image>
         </ImageView>
-        <Button id="text" fx:id="next" layoutX="680.0" layoutY="404.0" mnemonicParsing="false" onAction="#next" prefHeight="25.0" prefWidth="106.0" text="Закрыть" />
-        <Label id="Title" fx:id="TL" layoutX="292.0" layoutY="14.0" text="Удаление  завершено " textAlignment="CENTER">
+        <Button id="text" fx:id="next" layoutX="680.0" layoutY="404.0" mnemonicParsing="false" onAction="#next"
+                prefHeight="25.0" prefWidth="106.0" text="Закрыть"/>
+        <Label id="Title" fx:id="TL" layoutX="269.0" layoutY="14.0" text="Установка  завершена " textAlignment="CENTER">
             <font>
-                <Font name="Times New Roman" size="25.0" />
+                <Font size="25.0"/>
             </font>
         </Label>
-        <CheckBox id="text" fx:id="cb" layoutX="14.0" layoutY="408.0" mnemonicParsing="false" />
-        <Label id="text" layoutX="303.0" layoutY="43.0" text="Жалко что вы удалили мою игру " textAlignment="CENTER">
-         <font>
-            <Font name="Times New Roman" size="15.0" />
-         </font></Label>
+        <CheckBox id="text" fx:id="cb" layoutX="14.0" layoutY="408.0" mnemonicParsing="false"/>
+        <Label id="text" layoutX="299.0" layoutY="50.0" text="Спасибо за установку игры" textAlignment="CENTER"/>
     </children>
 </AnchorPane>

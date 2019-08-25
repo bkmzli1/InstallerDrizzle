@@ -10,10 +10,6 @@ public class Web {
     String v;
     public static  String lA="";
 
-    public static void main(String[] args) {
-        Web web = new Web();
-        System.out.println(web.licenseAgreement());
-    }
     public String parsV() {
         Document document = null;
         try {

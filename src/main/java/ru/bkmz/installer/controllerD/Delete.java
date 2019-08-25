@@ -9,8 +9,13 @@ import javafx.scene.control.TextArea;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
-import ru.bkmz.installer.util.ImageLoader;
+import ru.bkmz.installer.DeleteRun;
 import ru.bkmz.installer.util.PaneNext;
+
+import java.io.File;
+
+import static ru.bkmz.installer.Installer.fileListD;
+import static ru.bkmz.installer.controllerD.MainD.*;
 
 
 public class Delete {
@@ -24,31 +29,30 @@ public class Delete {
     boolean error = false;
 
 
-    public Thread thread = new Thread(() -> {
-        procent.setText("0%");
-        try {
-            ru.bkmz.installer.Delete.run(procent, progress, text);
-        } catch (Exception e) {
-            text.setText(text.getText() +
-                    "\n=========================================\n" +
-                    e +
-                    "\n=========================================");
-        }
-
-
-        next.setDisable(false);
-    });
+    Thread thread;
 
 
     public void initialize() {
-        text.setText(" ");
-        imeg.setImage(ImageLoader.IMAGE_LOADER.getImage("img/fon_d"));
-        next.setDisable(true);
         try {
+            next.setDisable(true);
+            thread = new Thread(new Runnable() {
+
+                @Override
+                public void run() {
+                    DeleteRun deleteRun = new DeleteRun(procent, progress, text, bDGame, bDSave, bDDekctop);
+                    try {
+                        deleteRun.run();
+                    } catch (Exception e) {
+                        text.setText(text.getText() + "\n" + e);
+                        next.setDisable(false);
+                    }
+                    next.setDisable(false);
+                }
+            });
+
             thread.start();
         } catch (Exception e) {
-            thread.stop();
-            error = true;
+            text.setText(text.getText() + "\n" + e);
             next.setDisable(false);
         }
 
@@ -56,10 +60,10 @@ public class Delete {
     }
 
     public void next(ActionEvent actionEvent) {
-        if (error) {
-            System.exit(1);
-        } else {
-            new PaneNext(rootPane, "fxml/dezenstaler/finih.fxml");
+        for (File f : fileListD) {
+            f.delete();
         }
+        new PaneNext(rootPane, "fxml/dezenstaler/finih.fxml");
+
     }
 }
