@@ -54,24 +54,21 @@ public class Installer {
     }
 
     public void run(Text procent, ProgressBar progress, TextArea text) throws Exception{
+        this.text = text;
+        this.procent = procent;
+        this.progress = progress;
 
-            try {
-                this.text = text;
-                this.procent = procent;
-                this.progress = progress;
+
                 scet();
                 FileWriter fileWriter = new FileWriter(Main.appdata + "drizzle.inf");
                 fileWriter.write(urlInnstaller);
                 fileWriter.close();
-            } catch (Exception e) {
-                isError = true;
-                e.printStackTrace();
-            }
+
             try {
                 try {
                     Thread.sleep(100);
                 } catch (InterruptedException e) {
-                    e.printStackTrace();
+                     addText("ошибка извлечения:" + e);
                 }
 
                 addText("Начита подготовка к установке");
@@ -94,7 +91,7 @@ public class Installer {
                 try {
                     Thread.sleep(1000);
                 } catch (InterruptedException e) {
-                    e.printStackTrace();
+                     addText("ошибка извлечения:" + e);
                 }
                 addText("Начето извлечение файлов");
                 for (int i = 0; i < file.size() - 1; i = i + 2) {
@@ -115,12 +112,12 @@ public class Installer {
                 try {
                     Thread.sleep(1000);
                 } catch (InterruptedException e) {
-                    e.printStackTrace();
+                     addText("ошибка извлечения:" + e);
                 }
                 try {
                     Thread.sleep(1000);
                 } catch (InterruptedException e) {
-                    e.printStackTrace();
+                     addText("ошибка извлечения:" + e);
                 }
                 if (!isError) {
                     addText("Установка завершина!");
@@ -139,7 +136,7 @@ public class Installer {
         try {
             Thread.sleep(1000);
         } catch (InterruptedException e) {
-            e.printStackTrace();
+             addText("ошибка извлечения:" + e);
         }
         if (desctop) {
             try {
@@ -156,7 +153,7 @@ public class Installer {
         try {
             Thread.sleep(1000);
         } catch (InterruptedException e) {
-            e.printStackTrace();
+             addText("ошибка извлечения:" + e);
         }
         if (pysk) {
             try {
