@@ -15,7 +15,11 @@ import static ru.bkmz.installer.Main.nameStage;
 
 
 public class StageStandart extends Stage {
-    public static Stage stage = new Stage();
+    public static Stage stage;
+
+    public StageStandart(Stage stage) {
+        this.stage = stage;
+    }
 
     public void stage(String name, String css, boolean follScren) {
 
@@ -39,7 +43,7 @@ public class StageStandart extends Stage {
             }
         });
         stage.getIcons().add(ImageLoader.IMAGE_LOADER.getImage("img/icon/icon"));
-       stage.setResizable(false);
+        stage.setResizable(false);
         stage.show();
     }
 

@@ -32,7 +32,7 @@ public class Delete {
     Thread thread;
 
 
-    public void initialize() {
+    public void initialize() throws Exception{
         try {
             next.setDisable(true);
             thread = new Thread(new Runnable() {

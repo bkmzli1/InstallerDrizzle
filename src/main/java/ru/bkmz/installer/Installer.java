@@ -53,7 +53,7 @@ public class Installer {
 
     }
 
-    public void run(Text procent, ProgressBar progress, TextArea text) {
+    public void run(Text procent, ProgressBar progress, TextArea text) throws Exception{
 
             try {
                 this.text = text;
@@ -91,7 +91,11 @@ public class Installer {
                 }
 
                 addText("Подготовка завершина");
-
+                try {
+                    Thread.sleep(1000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
                 addText("Начето извлечение файлов");
                 for (int i = 0; i < file.size() - 1; i = i + 2) {
                     try {
@@ -108,8 +112,16 @@ public class Installer {
                         addText("ошибка извлечения:" + e);
                     }
                 }
-
-
+                try {
+                    Thread.sleep(1000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                try {
+                    Thread.sleep(1000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
                 if (!isError) {
                     addText("Установка завершина!");
                 } else {
@@ -124,6 +136,11 @@ public class Installer {
     }
 
     void label() {
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         if (desctop) {
             try {
 
@@ -135,6 +152,11 @@ public class Installer {
                 isError = true;
                 addText("ошибка создания ярлыка:" + e);
             }
+        }
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
         }
         if (pysk) {
             try {

@@ -22,11 +22,7 @@ public class Finch {
     public CheckBox cb;
 
     public void initialize() {
-        try {
-            Thread.sleep(100);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+
         cb.setText("Просмотреть другие версии и\n" +
                 "Проэты");
     }

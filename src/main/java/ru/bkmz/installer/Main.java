@@ -16,17 +16,17 @@ public class Main extends Application {
     public static final String appdata = System.getenv("APPDATA") + "\\.drizzle\\";
     private static final String[] filesAll = new String[]{""};
     public static Stage stage;
-    public static String version = "1.1.1.4";
+    public static String version = "1.1.1.5";
     public static String versionD = "v3.10.3";
     public static Web web = new Web();
     public static String newVersion;
     public static String newLA;
 
     @Override
-    public void start(Stage primaryStage) throws Exception {
+    public void start(Stage stage) throws Exception {
 
 
-        StageStandart stageStandart = new StageStandart();
+        StageStandart stageStandart = new StageStandart(stage);
         File file = new File(appdata + "drizzle.inf");
         if (!file.exists()) {
             newVersion = web.parsV();

@@ -30,6 +30,11 @@ public class Installer {
             procent.setText("0%");
             try {
                 installer.run(procent, progress, text);
+                try {
+                    Thread.sleep(1000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
             } catch (Exception e) {
                 String s = text.getText();
                 s += "\n" + e.getLocalizedMessage() + "\n";
@@ -42,7 +47,7 @@ public class Installer {
     );
 
 
-    public void initialize() {
+    public void initialize() throws Exception{
         imeg.setImage(ImageLoader.IMAGE_LOADER.getImage("img/fon"));
         next.setDisable(true);
         try {

@@ -6,8 +6,8 @@ plugins {
 launch4j {
     mainClassName = 'ru.bkmz.installer.Main'
     outfile = "Installer drizzle.exe"
-    version = "1.1.1.4"
-    textVersion = "1.1.1.4"
+    version = "1.1.1.5"
+    textVersion = "1.1.1.5"
     icon = "B:\\icon.ico"
     companyName = "BkzmLitel"
     copyright = "BkzmLitel"
@@ -18,7 +18,7 @@ launch4j {
 apply plugin: "edu.sc.seis.launch4j"
 compileJava.options.encoding = "UTF-8"
 group 'installer drizzle'
-version '1.1.1.4'
+version '1.1.1.5'
 
 sourceCompatibility = 1.8
 
