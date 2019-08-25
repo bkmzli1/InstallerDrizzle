@@ -34,7 +34,7 @@ public class Finch {
     public void next(ActionEvent actionEvent) {
         if (cb.isSelected()) {
             try {
-                Desktop.getDesktop().browse(new URL("https://github.com/bkmzli1/InstallerDrizzle/blob/master/versions/Installer%20drizzle.exe").toURI());
+                Desktop.getDesktop().browse(new URL("https://github.com/bkmzli1/InstallerDrizzle/tree/master/versions").toURI());
             } catch (Exception e) {
                 e.printStackTrace();
             }
