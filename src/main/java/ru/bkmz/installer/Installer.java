@@ -59,10 +59,8 @@ public class Installer {
         this.progress = progress;
 
 
-                scet();
-                FileWriter fileWriter = new FileWriter(Main.appdata + "drizzle.inf");
-                fileWriter.write(urlInnstaller);
-                fileWriter.close();
+
+
 
             try {
                 try {
@@ -129,6 +127,11 @@ public class Installer {
             } catch (Exception e) {
                 addText(String.valueOf(e));
             }
+        scet();
+        FileWriter fileWriter = new FileWriter(Main.appdata + "drizzle.inf");
+        fileWriter.write(urlInnstaller);
+        fileWriter.close();
+        Thread.sleep(1000);
 
     }
 
