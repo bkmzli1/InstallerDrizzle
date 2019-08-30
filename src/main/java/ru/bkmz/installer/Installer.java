@@ -64,7 +64,7 @@ public class Installer {
 
             try {
                 try {
-                    Thread.sleep(100);
+                    Thread.sleep(10);
                 } catch (InterruptedException e) {
                      addText("ошибка извлечения:" + e);
                 }
@@ -87,7 +87,7 @@ public class Installer {
 
                 addText("Подготовка завершина");
                 try {
-                    Thread.sleep(1000);
+                    Thread.sleep(10);
                 } catch (InterruptedException e) {
                      addText("ошибка извлечения:" + e);
                 }
@@ -108,12 +108,12 @@ public class Installer {
                     }
                 }
                 try {
-                    Thread.sleep(1000);
+                    Thread.sleep(10);
                 } catch (InterruptedException e) {
                      addText("ошибка извлечения:" + e);
                 }
                 try {
-                    Thread.sleep(1000);
+                    Thread.sleep(10);
                 } catch (InterruptedException e) {
                      addText("ошибка извлечения:" + e);
                 }
@@ -131,13 +131,13 @@ public class Installer {
         FileWriter fileWriter = new FileWriter(Main.appdata + "drizzle.inf");
         fileWriter.write(urlInnstaller);
         fileWriter.close();
-        Thread.sleep(1000);
+        Thread.sleep(10);
 
     }
 
     void label()throws Exception {
         try {
-            Thread.sleep(1000);
+            Thread.sleep(10);
         } catch (InterruptedException e) {
              addText("ошибка извлечения:" + e);
         }
@@ -154,7 +154,7 @@ public class Installer {
             }
         }
         try {
-            Thread.sleep(1000);
+            Thread.sleep(10);
         } catch (InterruptedException e) {
              addText("ошибка извлечения:" + e);
         }

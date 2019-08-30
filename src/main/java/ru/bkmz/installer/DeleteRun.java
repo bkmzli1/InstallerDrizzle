@@ -101,12 +101,12 @@ public class DeleteRun {
         this.text.setText(s);
     }
 
-    void scet() {
+    void scet()throws Exception {
         up++;
         float procents = up / setap;
         procent.setText(procents * 100 + "%");
         progress.setProgress(procents);
-        System.out.println(procents);
+        Thread.sleep(30);
 
 
     }
@@ -131,7 +131,7 @@ public class DeleteRun {
                 Files.delete(Paths.get(url));
                 scet();
                 addText("удалено: " + url);
-            } catch (IOException e) {
+            } catch (Exception e) {
                 addText("ошибка удоления:" + e);
             }
         }

@@ -14,7 +14,7 @@ import ru.bkmz.installer.util.PaneNext;
 
 import java.io.File;
 
-import static ru.bkmz.installer.Installer.fileListD;
+import static ru.bkmz.installer.Installer.*;
 import static ru.bkmz.installer.controllerD.MainD.*;
 
 

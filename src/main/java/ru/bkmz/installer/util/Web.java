@@ -3,11 +3,10 @@ package ru.bkmz.installer.util;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
-import ru.bkmz.installer.Main;
 
 public class Web {
     public boolean error = false;
-    String v;
+    String versions;
     public static  String lA="";
 
     public String parsV() {
@@ -19,9 +18,9 @@ public class Web {
         }
         Elements elements = document.getElementsByAttributeValue("class", "blob-code blob-code-inner js-file-line");
         elements.forEach(element -> {
-            v = element.text();
+            versions = element.text();
         });
-        return v;
+        return versions;
     }
     public String licenseAgreement(){
         Document document = null;
