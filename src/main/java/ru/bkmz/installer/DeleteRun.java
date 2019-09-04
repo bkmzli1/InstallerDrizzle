@@ -6,14 +6,13 @@ import javafx.scene.text.Text;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
-import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
 import static ru.bkmz.installer.Installer.getCurrentUserDesktopPath;
 import static ru.bkmz.installer.Main.appdata;
 
-public class DeleteRun {
+public class DeleteRun implements Runnable {
     static String s = "";
     private static String[] filesG, filesS = {"color.ser", "playdata.ser"},
             filesD = {"C:\\ProgramData\\Microsoft\\Windows\\Start Menu\\Programs\\drizzle.lnk",
@@ -57,7 +56,7 @@ public class DeleteRun {
             setap += 1;
     }
 
-    public void run() throws Exception {
+    public void run() {
         if (bDGame) {
             String urlC = readUsingBufferedReader(appdata + "drizzle.inf");
             delete(appdata + "drizzle.inf");
@@ -81,51 +80,55 @@ public class DeleteRun {
                 delete(url);
             }
         }
-        Thread t = new Thread(() -> {
-            if (bDSave && bDGame) {
-                try {
-                    delete(appdata);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
+        if (bDSave && bDGame) {
+            try {
+                delete(appdata);
+            } catch (Exception e) {
+                e.printStackTrace();
             }
         }
-        );
-        t.start();
-        t.join();
+
+
     }
 
     void addText(String text) {
 
         s += text + "\n";
+        s = s.replace("java.nio.file.NoSuchFileException:","Нет такого файла");
         this.text.setText(s);
     }
 
-    void scet()throws Exception {
+    void scet() {
         up++;
         float procents = up / setap;
         procent.setText(procents * 100 + "%");
         progress.setProgress(procents);
-        Thread.sleep(30);
+
 
 
     }
 
-    public static String readUsingBufferedReader(String fileName) throws Exception {
-        BufferedReader reader = new BufferedReader(new FileReader(fileName));
-        String line = null;
-        StringBuilder stringBuilder = new StringBuilder();
-        String ls = "";
-        while ((line = reader.readLine()) != null) {
-            stringBuilder.append(line);
-            ls += line;
-        }
-        reader.close();
-        stringBuilder.deleteCharAt(stringBuilder.length() - 1);
-        return ls;
+    public static String readUsingBufferedReader(String fileName) {
+        try {
+
+            BufferedReader reader = new BufferedReader(new FileReader(fileName));
+            String line = null;
+            StringBuilder stringBuilder = new StringBuilder();
+            String ls = "";
+            while ((line = reader.readLine()) != null) {
+                stringBuilder.append(line);
+                ls += line;
+            }
+            reader.close();
+            stringBuilder.deleteCharAt(stringBuilder.length() - 1);
+            return ls;
+        }catch (Exception e){}
+        return null;
+
+
     }
 
-    void delete(String url)throws Exception  {
+    void delete(String url){
         Thread t = new Thread(() -> {
             try {
                 Files.delete(Paths.get(url));

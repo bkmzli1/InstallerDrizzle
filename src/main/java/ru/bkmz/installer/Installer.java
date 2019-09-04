@@ -4,24 +4,23 @@ package ru.bkmz.installer;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.control.TextArea;
 import javafx.scene.text.Text;
+import ru.bkmz.installer.controller.QuestionOne;
 import ru.bkmz.installer.util.CopyFiles;
 
-import java.io.File;
-import java.io.FileWriter;
-import java.io.InputStream;
-import java.io.StringWriter;
+import java.io.*;
+import java.nio.file.NoSuchFileException;
 import java.util.ArrayList;
 
 import static ru.bkmz.installer.util.ShortcutBuilder.sBuilder;
 
-public class Installer {
-    boolean desctop = false;
-    boolean pysk = false;
+public class Installer implements Runnable {
+    boolean desctop = QuestionOne.d;
+    boolean pysk = QuestionOne.p;
     String s = "";
     TextArea text;
     float setap;
     float up = 0;
-    String urlInnstaller;
+    String urlInnstaller = QuestionOne.urls;
     static boolean isError = false;
     public static ArrayList<File> fileListD = new ArrayList<File>();
     protected final String[] game = {"exe/drizzle.exe", "media/Acid.mp3", "media/Acid.wav", "media/electric.wav",
@@ -30,10 +29,11 @@ public class Installer {
     private Text procent;
     private ProgressBar progress;
 
-    public Installer(boolean desctop, boolean pysk, String urls) {
-        this.desctop = desctop;
-        this.pysk = pysk;
-        this.urlInnstaller = urls;
+    public Installer(Text procent, ProgressBar progress, TextArea text) {
+        this.text = text;
+        this.procent = procent;
+        this.progress = progress;
+
         setap = 28;
         if (desctop) {
             setap++;
@@ -53,93 +53,76 @@ public class Installer {
 
     }
 
-    public void run(Text procent, ProgressBar progress, TextArea text) throws Exception{
-        this.text = text;
-        this.procent = procent;
-        this.progress = progress;
+    public void run() {
 
+        procent.setText("0%");
+        addText("Начита подготовка к установке");
+        ArrayList<String[]> files = new ArrayList<String[]>();
+        for (String f :
+                game) {
+            files.add(f.split("/"));
+        }
+        ArrayList<String> file = new ArrayList<String>();
+        for (String[] sm :
+                files) {
+            for (String name :
+                    sm) {
+                scet();
+                file.add(name);
+            }
+        }
 
+        addText("Подготовка завершина");
 
+        addText("Начето извлечение файлов");
+        for (int i = 0; i < file.size() - 1; i = i + 2) {
 
-
+            scet();
             try {
                 try {
-                    Thread.sleep(10);
-                } catch (InterruptedException e) {
-                     addText("ошибка извлечения:" + e);
+                    CopyFiles.failCopi(file.get(i) + "/", file.get(i + 1));
+                    addText("Извлечено "+file.get(i) + "/" + file.get(i + 1));
+                } catch (NoSuchFileException e) {
+                    addText("Отказ доступа " + file.get(i) + "/" + file.get(i + 1));
                 }
 
-                addText("Начита подготовка к установке");
-                ArrayList<String[]> files = new ArrayList<String[]>();
-                for (String f :
-                        game) {
-                    files.add(f.split("/"));
-                }
-                ArrayList<String> file = new ArrayList<String>();
-                for (String[] sm :
-                        files) {
-                    for (String name :
-                            sm) {
-                        scet();
-                        file.add(name);
-                    }
-                }
-
-                addText("Подготовка завершина");
-                try {
-                    Thread.sleep(10);
-                } catch (InterruptedException e) {
-                     addText("ошибка извлечения:" + e);
-                }
-                addText("Начето извлечение файлов");
-                for (int i = 0; i < file.size() - 1; i = i + 2) {
-                    try {
-                        scet();
-                        CopyFiles.failCopi(file.get(i) + "/", file.get(i + 1));
-                        addText(file.get(i) + "/" + file.get(i + 1));
-                        if (file.get(i + 1).equals("drizzle.exe")) {
-
-                            label();
-
-                        }
-                    } catch (Exception e) {
-                        isError = true;
-                        addText("ошибка извлечения:" + e);
-                    }
-                }
-                try {
-                    Thread.sleep(10);
-                } catch (InterruptedException e) {
-                     addText("ошибка извлечения:" + e);
-                }
-                try {
-                    Thread.sleep(10);
-                } catch (InterruptedException e) {
-                     addText("ошибка извлечения:" + e);
-                }
-                if (!isError) {
-                    addText("Установка завершина!");
-                } else {
-                    addText("В процессе установки произошла ошибка");
-                    addText("При запуске игры будут запущены протоколы их исправления");
-                    addText("Если протоколы испровление ошибак несмогут их истранить обротитесь по электронной почте blmzlitel@gmail.com");
-                }
-            } catch (Exception e) {
-                addText(String.valueOf(e));
+            } catch (IOException e) {
             }
+
+            if (file.get(i + 1).equals("drizzle.exe")) {
+
+                label();
+
+            }
+
+        }
+
+
+        if (!isError) {
+            addText("Установка завершина!");
+        } else {
+            addText("В процессе установки произошла ошибка");
+            addText("При запуске игры будут запущены протоколы их исправления");
+            addText("Если протоколы испровление ошибак несмогут их истранить обротитесь по электронной почте blmzlitel@gmail.com");
+        }
+
         scet();
-        FileWriter fileWriter = new FileWriter(Main.appdata + "drizzle.inf");
-        fileWriter.write(urlInnstaller);
-        fileWriter.close();
-        Thread.sleep(10);
+        try {
+            FileWriter fileWriter = new FileWriter(Main.appdata + "drizzle.inf");
+            fileWriter.write(urlInnstaller);
+            fileWriter.close();
+            Thread.sleep(10);
+        } catch (Exception e) {
+
+        }
 
     }
 
-    void label()throws Exception {
+    void label() {
         try {
             Thread.sleep(10);
         } catch (InterruptedException e) {
-             addText("ошибка извлечения:" + e);
+            addText("ошибка извлечения:" + e);
         }
         if (desctop) {
             try {
@@ -156,7 +139,7 @@ public class Installer {
         try {
             Thread.sleep(10);
         } catch (InterruptedException e) {
-             addText("ошибка извлечения:" + e);
+            addText("ошибка извлечения:" + e);
         }
         if (pysk) {
             try {
@@ -171,7 +154,7 @@ public class Installer {
         }
     }
 
-    void addText(String text)throws Exception {
+    void addText(String text) {
 
         s += text + "\n";
         this.text.setText(s);
@@ -203,11 +186,11 @@ public class Installer {
     }
 }
 
-class StreamReader  extends Thread {
+class StreamReader extends Thread {
     private InputStream is;
     private StringWriter sw;
 
-    StreamReader(InputStream is)throws Exception {
+    StreamReader(InputStream is) throws Exception {
         this.is = is;
         sw = new StringWriter();
     }
@@ -222,7 +205,7 @@ class StreamReader  extends Thread {
         }
     }
 
-    String getResult()throws Exception {
+    String getResult() throws Exception {
         return sw.toString();
     }
 }

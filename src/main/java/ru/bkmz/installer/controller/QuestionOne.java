@@ -17,12 +17,12 @@ public class QuestionOne {
     public Label TL;
     public ImageView imeg;
     public AnchorPane rootPane;
-    public static Installer installer;
     public CheckBox desctop;
     public CheckBox pysk;
     public Button failList;
     public TextField url;
     public static String urls;
+    public static boolean d,p;
 
 
     public void initialize() {
@@ -32,8 +32,9 @@ public class QuestionOne {
     public void next(ActionEvent actionEvent) {
         File file = new File(url.getText());
         if (file.exists()) {
+            d = desctop.isSelected();
+            p = pysk.isSelected();
             urls = url.getText() + "\\drizzle";
-            installer = new Installer(desctop.isSelected(), pysk.isSelected(),urls);
             new PaneNext(rootPane, "fxml/installer/installer.fxml");
         } else {
             notification("Ошибка", "Дериктория " + file + " ненайдена");

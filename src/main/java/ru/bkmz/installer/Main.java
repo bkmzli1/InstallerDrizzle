@@ -7,13 +7,12 @@ import ru.bkmz.installer.util.StageStandart;
 import ru.bkmz.installer.util.Web;
 
 import java.io.File;
-import java.io.IOException;
 
 
 
 public class Main extends Application {
 
-    public static final String nameStage = "Installer drizzle".toUpperCase();
+    public static final String nameStage = "InstallerController drizzle".toUpperCase();
     public static final String appdata = System.getenv("APPDATA") + "\\.drizzle\\";
     private static final String[] filesAll = new String[]{""};
     public static Stage stage;
@@ -41,7 +40,7 @@ public class Main extends Application {
         } else {
             stageStandart.stage("fxml/dezenstaler/main.fxml", "css/main.css", false);
         }
-        stage = StageStandart.stage;
+
     }
 
 

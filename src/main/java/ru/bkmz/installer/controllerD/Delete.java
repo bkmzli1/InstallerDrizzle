@@ -14,7 +14,7 @@ import ru.bkmz.installer.util.PaneNext;
 
 import java.io.File;
 
-import static ru.bkmz.installer.Installer.*;
+import static ru.bkmz.installer.Installer.fileListD;
 import static ru.bkmz.installer.controllerD.MainD.*;
 
 
@@ -39,12 +39,19 @@ public class Delete {
 
                 @Override
                 public void run() {
-                    DeleteRun deleteRun = new DeleteRun(procent, progress, text, bDGame, bDSave, bDDekctop);
+
+                    Thread deleteRun= new Thread(new DeleteRun(procent, progress, text, bDGame, bDSave, bDDekctop),
+                            "Thread delete" );
                     try {
-                        deleteRun.run();
+                       deleteRun.start();
                     } catch (Exception e) {
                         text.setText(text.getText() + "\n" + e);
                         next.setDisable(false);
+                    }
+                    try {
+                        deleteRun.join();
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
                     }
                     next.setDisable(false);
                 }
