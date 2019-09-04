@@ -16,14 +16,14 @@ public class Main extends Application {
     public static final String appdata = System.getenv("APPDATA") + "\\.drizzle\\";
     private static final String[] filesAll = new String[]{""};
     public static Stage stage;
-    public static String version = "1.1.1.6";
+    public static String version = "1.1.1.7";
     public static String versionD = "v3.10.3";
     public static String newVersion;
     public static String newLA;
     private static Web web = new Web();
 
     @Override
-    public void start(Stage stage) throws Exception {
+    public void start(Stage stage)  {
 
 
         StageStandart stageStandart = new StageStandart(stage);
@@ -45,7 +45,7 @@ public class Main extends Application {
 
 
     @Override
-    public void init() throws Exception {
+    public void init()  {
         ImageLoader.IMAGE_LOADER.preferExternalSources(true);
         ImageLoader.IMAGE_LOADER.setCommonSuffix(".png");
         ImageLoader.IMAGE_LOADER.loading("img/fon");
