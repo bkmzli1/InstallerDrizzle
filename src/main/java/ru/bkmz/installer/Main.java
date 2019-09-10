@@ -16,8 +16,8 @@ public class Main extends Application {
     public static final String appdata = System.getenv("APPDATA") + "\\.drizzle\\";
     private static final String[] filesAll = new String[]{""};
     public static Stage stage;
-    public static String version = "1.1.1.8";
-    public static String versionD = "v3.10.3";
+    public static String version = "1.1.1.9";
+    public static String versionD = "v3.10.5.5";
     public static String newVersion;
     public static String newLA;
     private static Web web = new Web();
